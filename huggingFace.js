@@ -1,20 +1,19 @@
-// // // sk-oLvo6q4G359ug9uUbQXk9vaBgiwQqsvRgbA3uXnDJogTP4vA
 
 
 export async function generateImage(prompt) {
-  const API_KEY = "sk-oLvo6q4G359ug9uUbQXk9vaBgiwQqsvRgbA3uXnDJogTP4vA";
+  const API_KEY = ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,";  // stebility ai api
   const url = "https://api.stability.ai/v2beta/stable-image/generate/core";
 
   const formData = new FormData();
   formData.append("prompt", prompt);
-  formData.append("output_format", "png"); // Valid format
+  formData.append("output_format", "png"); 
 
   try {
     const response = await fetch(url, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${API_KEY}`,
-        Accept: "image/*", // ✅ Fixed: Using wildcard instead of specific type
+        Accept: "image/*", 
       },
       body: formData,
     });
@@ -30,7 +29,6 @@ export async function generateImage(prompt) {
       throw new Error(errorData.errors?.[0] || "Failed to generate image");
     }
 
-    // Convert image blob to base64
     const blob = await response.blob();
     return await new Promise((resolve, reject) => {
       const reader = new FileReader();
